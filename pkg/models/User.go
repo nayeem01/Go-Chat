@@ -1,8 +1,15 @@
 package models
 
+import (
+	"time"
+
+	"gorm.io/gorm"
+)
+
 type User struct {
-	Id     int    `json:"id" gorm:"primaryKey"`
-	Title  string `json:"title"`
-	Author string `json:"author"`
-	Desc   string `json:"desc"`
+	gorm.Model
+	ID        int    `json:"id" gorm:"primaryKey"`
+	FirstName string `json:"first_name"`
+	LastName  string `json:"last_name"`
+	CreatedAt time.Time
 }

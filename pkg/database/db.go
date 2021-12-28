@@ -4,16 +4,13 @@ import (
 	"log"
 
 	"github.com/nayeem01/Go-Chat/pkg/config"
+	"github.com/nayeem01/Go-Chat/pkg/models"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
 )
 
-type DbInstance struct {
-	Db *gorm.DB
-}
-
-var Database DbInstance
+var Db *gorm.DB
 
 func ConncetDB() {
 
@@ -28,9 +25,7 @@ func ConncetDB() {
 	log.Println("Connected Successfully to PSQL Database")
 	gDB.Logger = logger.Default.LogMode(logger.Info)
 
-	Database = DbInstance{
-		Db: gDB,
-	}
-	//db.AutoMigrate(&models.User{})
+	gDB.AutoMigrate(&models.User{})
+	Db = gDB
 
 }
